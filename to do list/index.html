@@ -7,7 +7,9 @@
     <title>To do list</title>
 </head>
 <body>
-    <h1>Lista de<span> tarefas</span></h1>
+    <header>
+        <h1>Lista de<span> tarefas</span></h1>
+    </header>
 
     <main class="container">
         <form id="cadrasto">
@@ -17,29 +19,17 @@
               id="texto-input"
               placeholder="Digite sua nova tarefa">
 
-            <button>Adicionar</button>
+            <button id="adicionar">Adicionar tarefa</button>
         </form>
         <div id="tarefas">
             <ul>
-                <li>
-                    tarefa 1
-                    <div>
-                        <button class="excluir">Excluir</button>
-                        <button class="concluir">Concluir</button>
-                    </div>
-                </li>
-                <li>
-                    tarefa 2
-                    <div>
-                        <button class="excluir">Excluir</button>
-                        <button class="concluir">Concluir</button>
-                    </div>
-                </li>
+              
            
             </ul>
         </div>
 
 
     </main>
+    <script src="script.js"></script>
 </body>
 </html>
