@@ -59,6 +59,7 @@ h1{
   width: 70%;
   
 }
+
 #texto-input:focus{
   outline: 1px solid var(--brand);
 }
@@ -130,4 +131,7 @@ img{
 .concluido{
 
   text-decoration: line-through;
+}
+.concluido {
+    text-decoration: line-through;
 }
