@@ -1,55 +1,73 @@
-const btnAdicionar = document.getElementById('adicionar')
-const valorTarefa = document.getElementById('texto-input')
+const novaTarefa = document.querySelector('#nova-tarefa')
+const btnCriarTarefa = document.querySelector('button')
+var listaTarefas = []
+let btnTarefas = document.querySelector('.tarefas')
+;
 
-btnAdicionar.addEventListener('click', (evento)=>{
-    evento.preventDefault();
-    if(valorTarefa.value == ''){
-        alert('Digite uma tarefa valida')
-       } else{
-           const tarefa = criarTarefa(valorTarefa.value)
-            renderizarTarefa(tarefa)
-       }
-
-    valorTarefa.value = ''
-
-  
+novaTarefa.addEventListener('keyup', (tecla)=>{
+    
+    if (tecla.key == 'Enter'){
+        renderizarTarefa()
+        atualizarListaTarefas()
+    }
 })
-const listaTarefa = document.querySelector('ul')
 
-listaTarefa.addEventListener('click',(elemento) =>{
-
-    const itemClicado = elemento.target
-
-    if(itemClicado.classList.contains('excluir')){
-     
-     itemClicado.parentElement.parentElement.remove()
-
-    }
-    if(itemClicado.classList.contains('concluir')){
-        
-        itemClicado.parentElement.parentElement.firstElementChild.classList.toggle('concluido')
-
-    }
+btnCriarTarefa.addEventListener('click', ()=>{
+    
+    renderizarTarefa()    
+    atualizarListaTarefas()
     
 })
 
-function criarTarefa (valorTarefa){
-       const li = document.createElement('li')
-       
-    li.innerHTML = ` 
-    <p>${valorTarefa}</p>
-    <div>
-        <button class="excluir"></button>
-        <button class="concluir"></button>
-    </div>`
+btnTarefas.addEventListener('click',(elemento)=>{
+
+    const elementoClicado = elemento.target
+
+    if (elementoClicado.classList.contains('excluir')){
+        elementoClicado.parentElement.parentElement.remove()
+        atualizarListaTarefas()
+
+    }
+    if (elementoClicado.classList.contains('concluida')){
+        elementoClicado.parentElement.parentElement.firstElementChild.classList.toggle('checked')
+    }
+})
+
+
+function criarNovaTarefa(novaTarefa){
+
+    if (novaTarefa == ''){
+        alert('Sua tarafa não atende os requisitos')
+    }
+    else{
+
+        const li = document.createElement('li')
+        li.innerHTML =`
+        <p>${novaTarefa}</p> 
+        <div class="icons">
+        <span class="excluir">&#x274C</span>
+        <span class="concluida">&#x2714&#xFE0F</span>
+        </div>
+        `
+    return li
+    }
+
+}
+
+function atualizarListaTarefas(){
     
-      return li
+    listaTarefas = [...document.querySelectorAll('li')]
+    
 }
 
- function renderizarTarefa(tarefa){
-    const listaTarefa = document.querySelector('ul')
+function renderizarTarefa(){
 
-   listaTarefa.appendChild(tarefa)
+    const tarefa = criarNovaTarefa(novaTarefa.value)
+    
+    const listaTarefas = document.querySelector('.lista-tarefas')
+    
+    listaTarefas.appendChild(tarefa)
+
+    novaTarefa.value = ''
 }
-
 
